@@ -1,0 +1,81 @@
+<mat-card class="container">
+        <form [formGroup]="searchContractForm" (ngSubmit)="onSearchContractSubmit()" #f="ngForm">
+            <h1>Search Contract</h1>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Check-in Date</mat-label>
+                <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="checkInDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>No Of Nights</mat-label>
+                <input type="number" min="1" matInput formControlName="NoOfNights" placeholder="Enter No Of Nights" required />
+                <mat-error>please enter valid No Of Nights</mat-error>
+            </mat-form-field>
+
+            <table class="table table-bordered" formArrayName="roomDetails">  
+                <button type="button" mat-raised-button (click)="addRoomDetails()" style="margin-top: 10px; margin-bottom: 10px;">
+                    Add Room Details
+                </button>
+                <tr *ngFor="let quantity of roomDetails().controls; let i=index" [formGroupName]="i" style="font-size: 12px">  
+                  <td>  
+                      <mat-form-field appearance="outline">
+                        <mat-label>No Of Rooms</mat-label>
+                        <input type="number" min="1" matInput formControlName="rooms" required />
+                        <mat-error>Please Enter Valid No Of Rooms</mat-error>
+                    </mat-form-field>
+                  </td>  
+                  <td>  
+                      <mat-form-field appearance="outline">
+                        <mat-label>No Of Adults</mat-label>
+                        <input type="number" min="1" matInput formControlName="adults" required />
+                        <mat-error>Please Enter valid No Of Adults</mat-error>
+                        </mat-form-field>
+                  </td>  
+                  <td>  
+                      <button type="button" mat-raised-button (click)="removeRoomDetails(i)" class="remove" >Remove</button>  
+                  </td>  
+                </tr>  
+              </table>
+              <mat-card-actions>
+                <div style="float: right;">
+                    <button mat-raised-button type="submit" [disabled]="!f.valid" class="submit">Submit</button>
+                </div>
+            </mat-card-actions>
+        </form>
+</mat-card>
+
+
+<mat-card class="container">
+    <h1>Search Results</h1>
+    <table mat-table [dataSource]="results" class="mat-elevation-z8" style="width: 100%;">
+        <ng-container matColumnDef="Hotel Name">
+            <th mat-header-cell *matHeaderCellDef>Hotel Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.hotelName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Room Type">
+            <th mat-header-cell *matHeaderCellDef>Room Type</th>
+            <td mat-cell *matCellDef="let element"> {{element.roomType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="No Of Rooms">
+            <th mat-header-cell *matHeaderCellDef>No of Rooms</th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfRooms}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="No Of Adults">
+            <th mat-header-cell *matHeaderCellDef>No of Adults</th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfAdults}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>

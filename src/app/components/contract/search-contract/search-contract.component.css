@@ -1,0 +1,25 @@
+.container{
+    margin: auto;
+    width: 50%;
+    margin-top: 2%;
+    margin-top: 2%;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+.remove{
+  margin-bottom: 16px; 
+  height: 42px;
+  background-color: rgb(226, 35, 35);
+  color: white;
+  transform: scale(1) !important;
+}
+
+.submit{
+  background-color: rgb(73, 73, 218);
+  color: white;
+  transform: scale(1) !important;
+}
+

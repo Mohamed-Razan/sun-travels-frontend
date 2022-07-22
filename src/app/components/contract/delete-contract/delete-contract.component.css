@@ -1,0 +1,10 @@
+.delete{
+    background-color: rgb(226, 35, 35);
+    transform: scale(1) !important;
+    color: white;
+}
+.cancel{
+    background-color: rgb(73, 73, 218);
+    transform: scale(1) !important;
+    color: white;
+}

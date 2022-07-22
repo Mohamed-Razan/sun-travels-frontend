@@ -1,0 +1,42 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    Sun Travels
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+        <img class="avatar mat-elevation-z8" src="https://assets-global.website-files.com/5e3177cecf36f6591e4e38cb/5ea2a86505e63bdd814cf868_Logo.png" />
+        <p class="designation">Sun Travels</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" [routerLink]="['/']">
+            <mat-icon>home</mat-icon>
+            <span>Hotel</span>
+        </button>
+        <button mat-button class="menu-button" [routerLink]="['/contract']">
+            <mat-icon>description</mat-icon>
+            <span>Contract</span>
+        </button>
+        <button mat-button class="menu-button" [routerLink]="['/search-contract']">
+            <mat-icon>search</mat-icon>
+            <span>Search</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
